@@ -1,0 +1,81 @@
+html{
+    font-family: Helvetica; 
+    display:inline-block; 
+    margin: 0px auto; 
+    text-align: center; 
+    font-size: 62.5%;  
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+h1{
+    color: #0F3376; 
+    padding: 2vh;
+}
+p{
+    font-size: 1.5rem;
+}
+.button{
+    display: inline-block;
+    background-color: #7a04eb; 
+    border: none; color: white;
+    border-radius: 4px; 
+    color: white; 
+    padding: 16px 40px; 
+    text-decoration: none; 
+    font-size: 1.5rem; 
+    margin: 2px; 
+    cursor: pointer;
+}
+.button2{
+    background-color: #4286f4;
+}
+.speedContainer{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 0.5rem;
+}
+.speed_button{
+    padding: 1.5rem 2rem; 
+    min-width: 3rem; 
+    background-color: #ff00a0;
+}
+.button:hover{
+        background-color: #ff124f;
+}
+.moveContainer{
+        gap: 0.5rem; width: 40rem; margin: 3rem auto auto auto;
+        display: grid;
+        grid-template-columns: [col-start-1] 1fr [col-end-1 col-start-2] 1fr [col-end-2 col-start-3] 1fr [col-end-3 grid-end];
+        grid-template-rows: repeat(3, [row-start] min-content [row-end]);
+}
+.move_button_1{
+        grid-column: col-start-2 / col-end-2; 
+        grid-row: row-start 1 / row-end 1;
+}
+.move_button_2{
+        grid-column: col-start-2 / col-end-2; 
+        grid-row: row-start 3 / row-end 3;
+}
+.move_button_3{
+        grid-column: col-start-1 / col-end-1; 
+        grid-row: row-start 2 / row-end 2;
+}
+.move_button_4{
+        grid-column: col-start-3 / col-end-3; 
+        grid-row: row-start 2 / row-end 2;
+}
+.move_button_5{
+        grid-column: col-start-2 / col-end-2; 
+        grid-row: row-start 2 / row-end 2;
+}
+.move_button{
+        padding: 1.5rem 2rem; 
+        width: 100%;
+}
+.move_button_center{
+        background-color: #120458;
+        height: 100%;
+}
