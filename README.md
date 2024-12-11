@@ -51,7 +51,7 @@ To build the Micro:Bot, you’ll need the following components:
 
 1. **Prepare the Hardware**:
 
-    - Assemble the chassis of the car using 3D-printed parts (designs included in the course).
+    - Assemble the chassis of the car using 3D-printed parts (STL included in the project).
     - Connect the DC motors to the L298N motor driver.
     - Wire the ESP32 to the motor driver and OLED display.
     - Install the TP4056 module and batteries.
