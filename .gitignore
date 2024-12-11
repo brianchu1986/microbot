@@ -6,5 +6,5 @@ __pycache__
 .DS_Store
 /*_session/
 *.ipynb
-config.py
 tools
+config.json

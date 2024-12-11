@@ -12,9 +12,9 @@ try:
 except:
     import socket
 
-import network
-import config
+import network, usys
 import esp
+import ujson as json
 
 esp.osdebug(None)
 
@@ -22,20 +22,44 @@ import gc
 
 gc.collect()
 
+with open("/config.json") as credentials_json:  # This open and read config file.
+    config = json.loads(credentials_json.read())
+ssid = config["WIFI_SSID"]
+password = config["WIFI_PASSWORD"]
 
-ssid = config.WIFI_SSID
-password = config.WIFI_PASSWORD
 
-ap = network.WLAN(network.AP_IF)
-ap.active(True)
-ap.config(essid=ssid, password=password)  # access point
-# ap.connect(config.WIFI_SSID, config.WIFI_PASSWD) # for wifi connection
+def do_connect(mode="STA_IF"):
+    if mode == "STA_IF":
+        ap = network.WLAN(network.STA_IF)
+        ap.active(True)  # Activate the interface so you can use it.
+        if ap.isconnected():
+            ap.disconnect()
+            print("started in the connected state, but now disconnected")
+        else:  # Unless already connected, try to connect.
+            print("connecting to network...")
+        time.sleep(2)
+        ap.connect(
+            ssid, password
+        )  # Connect to the station using credentials from the json file.
+        if not ap.isconnected():
+            print("Can't connect to network with given credentials.")
+            usys.exit(
+                0
+            )  # This will programmatically break the execution of this script and return to shell.
+    elif mode == "AP_IF":
+        ap = network.WLAN(network.AP_IF)  # access point
+        ap.config(essid=ssid, password=password)
+        ap.active(True)  # Activate the interface so you can use it.
 
-while ap.active() == False:
-    pass
+    print("Connection successful")
+    print("network config:", ap.ifconfig())
+    return ap
 
-print("Connection successful")
-print(ap.ifconfig())
+
+ap = do_connect(
+    mode="AP_IF"
+)  # mode can be "STA_IF" for station or "AP_IF" for access point
+
 
 ##### configure motor #####
 frequency = 15000
